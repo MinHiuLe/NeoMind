@@ -32,3 +32,17 @@ NeoMind is an intelligent chatbot integrating Gemini AI for research and in-dept
 ```bash
 git clone https://github.com/MinHiuLe/NeoMind.git
 cd NeoMind
+```
+2. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+3. Create .streamlit/secrets.toml:
+```bash
+GEMINI_API_KEY = "your_api_key_here"
+MONGODB_URI = "your_mongodb_uri_here"
+```
+4. Run app:
+```bash
+streamlit run app.py
+```
