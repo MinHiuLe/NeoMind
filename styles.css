@@ -1,0 +1,28 @@
+.stSidebar {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.stButton > button {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+    padding: 10px 16px;
+    background-color: transparent;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.stButton > button:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.stAlert {
+    background-color: #e3f2fd;
+    border-left: 4px solid #2196F3;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 8px;
+}
