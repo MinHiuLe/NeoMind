@@ -1,4 +1,5 @@
 .stSidebar {
+    background-color: #f7f7f7;
     padding: 20px;
     border-radius: 10px;
 }
@@ -19,9 +20,23 @@
 }
 
 .stAlert {
-    background-color: #e3f2fd;
     border-left: 4px solid #2196F3;
     font-size: 14px;
     padding: 10px;
     border-radius: 8px;
+}
+
+/* Thêm kiểu cho nút xoá */
+.stDeleteButton > button {
+    border: none;
+    background-color: #ff4d4f;
+    color: white;
+    border-radius: 8px;
+    padding: 8px 12px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.stDeleteButton > button:hover {
+    background-color: #ff7875;
+    transform: scale(1.05);
 }
