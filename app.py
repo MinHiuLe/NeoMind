@@ -26,7 +26,6 @@ def local_css(file_name):
 
 local_css("styles.css")
 
-# Kết nối MongoDB (sử dụng st.secrets để quản lý thông tin nhạy cảm)
 MONGODB_URI = st.secrets["MONGODB_URI"]
 try:
     client = pymongo.MongoClient(MONGODB_URI, serverSelectionTimeoutMS=30000)
@@ -39,12 +38,10 @@ except Exception as e:
     st.error(f"MongoDB connection failed: {e}")
     st.stop()
 
-# Tạo unique index cho email và username nếu chưa tồn tại
 users_collection.create_index("email", unique=True)
 users_collection.create_index("username", unique=True)
-# Hàm gửi email cảm ơn sau khi đăng ký
+
 def send_thank_you_email(to_email, username):
-    # Lấy cấu hình SMTP từ st.secrets
     smtp_server = st.secrets.get("SMTP_SERVER")
     smtp_port = st.secrets.get("SMTP_PORT")
     email_user = st.secrets.get("EMAIL_USER")
@@ -97,14 +94,12 @@ def register_user(email, username, password):
         return True, "Register successfully!"
     return False, "Register failed!"
 
-# Hàm đăng nhập người dùng
 def login_user(username_or_email, password):
     user = users_collection.find_one({"$or": [{"email": username_or_email}, {"username": username_or_email}]})
     if user and bcrypt.checkpw(password.encode('utf-8'), user["password"]):
         return True, user
     return False, "Invalid login information!"
 
-# Các hàm xử lý phiên chat (đã cập nhật để lưu theo user)
 def save_chat_session(title, messages):
     session_doc = {
         "user_id": st.session_state.user["_id"],
@@ -142,11 +137,9 @@ def delete_chat_session(session_id):
         st.error(f"Failed to delete chat session: {str(e)}")
         logging.error(f"Failed to delete chat session: {str(e)}")
 
-## Nếu chưa có biến auth_page, mặc định hiển thị trang đăng ký
 if "auth_page" not in st.session_state:
     st.session_state.auth_page = "login"
 
-# Nếu người dùng chưa đăng nhập
 if "user" not in st.session_state:
     if st.session_state.auth_page == "register":
         st.subheader("Register")
@@ -163,18 +156,15 @@ if "user" not in st.session_state:
             elif reg_password != reg_password_confirm:
                 st.error("Password and Password Confirmation do not match!")
             else:
-                # Gọi hàm đăng ký (register_user) đã được định nghĩa ở phần khác
                 success, message = register_user(reg_email, reg_username, reg_password)
                 if success:
                     st.success(message)
-                    # Gửi email cảm ơn sau khi đăng ký thành công
                     send_thank_you_email(reg_email, reg_username)
                 else:
                     st.error(message)
-        # Nút chuyển sang trang đăng nhập
         if st.button("Already have an account? Login"):
             st.session_state.auth_page = "login"
-            st.rerun()  # Cập nhật lại trang
+            st.rerun()  
 
     elif st.session_state.auth_page == "login":
         st.subheader("Login")
@@ -183,7 +173,6 @@ if "user" not in st.session_state:
             login_password = st.text_input("Password", type="password")
             login_submit = st.form_submit_button("Login")
         if login_submit:
-            # Gọi hàm đăng nhập (login_user) đã được định nghĩa ở phần khác
             success, user_or_message = login_user(login_input, login_password)
             if success:
                 st.session_state.user = user_or_message
@@ -197,10 +186,8 @@ if "user" not in st.session_state:
             st.rerun()
     st.stop()
 
-# Sau khi đăng nhập, hiển thị thông tin người dùng
 st.sidebar.write(f"Hello, {st.session_state.user['username']}")
 
-# Phần chat của ứng dụng
 st.title("🐈 NeoMind: AI Research")
 
 if "api_key" not in st.session_state:
@@ -266,7 +253,6 @@ if st.session_state.api_key:
                     logging.error(f"Error when connecting to API: {str(e)}")
                     st.session_state.messages.pop()
             
-            # Sau mỗi lượt chat, tự động lưu phiên chat
             if st.session_state.current_session_id is not None:
                 update_chat_session(st.session_state.current_session_id, st.session_state.messages)
             else:
