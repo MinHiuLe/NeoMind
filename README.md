@@ -1,7 +1,5 @@
 # 🐈 NeoMind - AI Research Assistant  
-
-(![NeoMind Preview](![Uploading image.png…]()
-))  
+![Screenshot 2025-02-24 145450](https://github.com/user-attachments/assets/3337530f-d7b6-4c09-a9a0-79416deb2438)
 
 NeoMind is an intelligent chatbot integrating Gemini AI for research and in-depth assistance. It is currently under active development and will be continuously improved.  
 > ⚠️ Note: The current version is still being improved. We will continue to introduce new features and enhance the user experience in future updates.  
