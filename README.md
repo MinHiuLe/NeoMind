@@ -3,6 +3,7 @@
 ![Demo Preview](https://via.placeholder.com/800x400.png?text=NeoMind+Demo+Preview)  
 
 NeoMind is an intelligent chatbot integrating Gemini AI for research and in-depth assistance. It is currently under active development and will be continuously improved.  
+> ⚠️ Note: The current version is still being improved. We will continue to introduce new features and enhance the user experience in future updates.  
 
 ## ✨ Current Features  
 
@@ -14,18 +15,6 @@ NeoMind is an intelligent chatbot integrating Gemini AI for research and in-dept
 - Auto-save chat sessions  
 - Interactive hover effects for buttons  
 - Well-formatted notifications  
-
-## 🚧 Future Features (Under Development)  
-
-> ⚠️ Note: The current version is still being improved. We will continue to introduce new features and enhance the user experience in future updates.  
-
-- [ ] Multi-language support  
-- [ ] Integration with multiple AI models  
-- [ ] Chat history search  
-- [ ] Export chat data (PDF/Markdown)  
-- [ ] Plugin system for extended functionality  
-- [ ] Performance optimization  
-- [ ] Dark mode  
 
 ## 🛠 Technologies Used  
 
